@@ -195,12 +195,12 @@
             <td colspan="4" style="text-align:right;"><b>Paid Amount (₹)</b></td>
             <td colspan="1"><b>350</b></td>
         </tr> --}}
-        {{-- <tr>
-            <td colspan="5"><b>Due Amount (₹) : 50</b></td>
+        <tr>
+            <td colspan="5"><b>Due Amount : {!! format_money_pdf($invoice->due_amount, $invoice->customer->currency) !!}</b></td>
         </tr>
         <tr>
             <td colspan="5"> <b>@lang('pdf_invoice_due_date')</b> : {{ $invoice->formattedDueDate }}</td>
-        </tr> --}}
+        </tr>
     </table>
 
     <div>
