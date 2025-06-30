@@ -6,8 +6,9 @@
     <style>
         body {
             box-sizing: border-box;
-            font-size: .6rem;
+            font-size: .8rem;
             font-family: "Lucida Console", "Courier New", monospace;
+            font-weight: bold;
         }
 
         .td,
@@ -35,7 +36,7 @@
             <td style="width: 50%; border: double 1px #000">
                 @include('app.pdf.invoice.partials.single')
             </td>
-
+            <td></td>
             <td style="width: 50%; border: double 1px #000">
                 @include('app.pdf.invoice.partials.single')
             </td>

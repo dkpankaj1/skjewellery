@@ -1,4 +1,4 @@
-<div style="min-height: 138.5mm;">
+<div style="min-height: 183.5mm;">
     <table width="100%">
         <tr>
             <td width="50%">
@@ -33,7 +33,7 @@
         </tr>
     </table>
 
-    <table style="width: 100%;border-bottom:solid 1px;font-size:0.6rem">
+    <table style="width: 100%;border-bottom:solid 1px;font-size:0.8rem">
         <tr>
             <td>
 
@@ -68,7 +68,7 @@
 
         @php
             $index = 1;
-            $space = 35;
+            $space = 50;
         @endphp
         @foreach ($invoice->items as $item)
             <tr>

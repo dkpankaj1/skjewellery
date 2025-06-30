@@ -584,7 +584,7 @@ class Invoice extends Model implements HasMedia
             return view('app.pdf.invoice.'.$invoiceTemplate);
         }
 
-        return PDF::loadView('app.pdf.invoice.'.$invoiceTemplate);
+        return PDF::setPaper('a4', 'landscape')->loadView('app.pdf.invoice.'.$invoiceTemplate);
     }
 
     public function getEmailAttachmentSetting()
