@@ -114,7 +114,7 @@ class Invoice extends Model implements HasMedia
 
     public function getInvoicePdfUrlAttribute()
     {
-        return url('/invoices/pdf/'.$this->unique_hash);
+        return url('/invoices/pdf/' . $this->unique_hash);
     }
 
     public function getPaymentModuleEnabledAttribute()
@@ -207,7 +207,7 @@ class Invoice extends Model implements HasMedia
 
     public function scopeWhereInvoiceNumber($query, $invoiceNumber)
     {
-        return $query->where('invoices.invoice_number', 'LIKE', '%'.$invoiceNumber.'%');
+        return $query->where('invoices.invoice_number', 'LIKE', '%' . $invoiceNumber . '%');
     }
 
     public function scopeInvoicesBetween($query, $start, $end)
@@ -222,9 +222,9 @@ class Invoice extends Model implements HasMedia
     {
         foreach (explode(' ', $search) as $term) {
             $query->whereHas('customer', function ($query) use ($term) {
-                $query->where('name', 'LIKE', '%'.$term.'%')
-                    ->orWhere('contact_name', 'LIKE', '%'.$term.'%')
-                    ->orWhere('company_name', 'LIKE', '%'.$term.'%');
+                $query->where('name', 'LIKE', '%' . $term . '%')
+                    ->orWhere('contact_name', 'LIKE', '%' . $term . '%')
+                    ->orWhere('company_name', 'LIKE', '%' . $term . '%');
             });
         }
     }
@@ -581,10 +581,14 @@ class Invoice extends Model implements HasMedia
         ]);
 
         if (request()->has('preview')) {
-            return view('app.pdf.invoice.'.$invoiceTemplate);
+            return view('app.pdf.invoice.' . $invoiceTemplate);
         }
 
-        return PDF::setPaper('a4', 'landscape')->loadView('app.pdf.invoice.'.$invoiceTemplate);
+        if ($invoiceTemplate == 'invoice0') {
+            return PDF::setPaper('a4', 'landscape')->loadView('app.pdf.invoice.' . $invoiceTemplate);
+        }
+
+        return PDF::loadView('app.pdf.invoice.' . $invoiceTemplate);
     }
 
     public function getEmailAttachmentSetting()
@@ -663,7 +667,7 @@ class Invoice extends Model implements HasMedia
         foreach ($templates as $key => $template) {
             $templateName = Str::before(basename($template), '.blade.php');
             $invoiceTemplates[$key]['name'] = $templateName;
-            $invoiceTemplates[$key]['path'] = vite_asset('img/PDF/'.$templateName.'.png');
+            $invoiceTemplates[$key]['path'] = vite_asset('img/PDF/' . $templateName . '.png');
         }
 
         return $invoiceTemplates;
